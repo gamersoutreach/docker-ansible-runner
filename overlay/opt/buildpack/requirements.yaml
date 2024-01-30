@@ -1,0 +1,15 @@
+---
+collections:
+  - name: ansible.netcommon
+    version: 6.0.0
+  - name: arista.avd
+    version: 4.5.0
+  - name: community.docker
+    version: 3.7.0
+    source: https://galaxy.ansible.com
+  - name: community.general
+    version: 8.3.0
+    source: https://galaxy.ansible.com
+  - name: ansible.posix
+    version: 1.5.4
+    source: https://galaxy.ansible.com
