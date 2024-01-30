@@ -31,4 +31,4 @@ jobs:
         with:
           context: .
           push: true
-          tags: ansible-runner:latest
+          tags: ghcr.io/gamersoutreach/ansible-runner:latest

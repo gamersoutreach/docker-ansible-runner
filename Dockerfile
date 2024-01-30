@@ -31,3 +31,4 @@ WORKDIR /app
 RUN useradd -m ansible
 RUN mkdir -p /home/ansible/.ssh
 RUN chown -R ansible:ansible /home/ansible/.ssh
+USER ansible
