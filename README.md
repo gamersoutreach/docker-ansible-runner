@@ -24,6 +24,7 @@ This image can be used by any ansible project. If SSH is required, be sure to mo
 ```shell
 docker run \
     --rm -it \
+    --pull always \
     --network host \
     --mount type=bind,source=".",target=/app \
     --mount type=bind,source="${HOME}/.ssh",target=/home/ansible/.ssh,readonly \
