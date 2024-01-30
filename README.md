@@ -6,9 +6,27 @@ This project builds a docker image with all of the dependencies required to run 
 
 ### Users
 
-- `ansible` - This image contains a user for use by ansible. This user enables SSH from inside of the container.
+| User      | Description                                                                                                                                            |
+| --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `ansible` | This is the default user, for use by ansible. This user enables SSH from inside of a container, when used with a SSH bind mount (see "Mounts", below). |
 
 ### Mounts
 
-- `/app` - The expected mount location for an ansible project
-- `/home/ansible/.ssh` - The ansible user's SSH Directory. Private keys can be mounted inside of this directory for use by ansible-playbook during runs.
+| Mount                | Description                                                                                                                             |
+| -------------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
+| `/app`               | The expected mount path for an ansible project                                                                                          |
+| `/home/ansible/.ssh` | The default ansible user's SSH Directory. Private keys can be mounted inside of this directory for use by ansible-playbook during runs. |
+
+## Usage
+
+This image can be used by any ansible project. If SSH is required, be sure to mount the `~/.ssh` so the local user's keys are available.
+
+```shell
+docker run \
+    --rm -it \
+    --network host \
+    --mount type=bind,source=".",target=/app \
+    --mount type=bind,source="${HOME}/.ssh",target=/home/ansible/.ssh,readonly \
+    ghcr.io/gamersoutreach/ansible-runner:latest \
+    ansible-playbook -e "ansible_ssh_user=${USER}" -i inventory.yml site.yml
+```
