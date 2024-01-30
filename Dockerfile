@@ -15,11 +15,11 @@ RUN <<EOF
 EOF
 
 # Install ansible dependencies
-COPY overlay /
+COPY overlay/ /
 RUN <<EOF
     set -eux
     pip install -r /opt/buildpack/requirements.txt
-    ansible-galaxy collection install -r /opt/buildpack/requirements.yml
+    ansible-galaxy collection install -r /opt/buildpack/requirements.yaml
 EOF
 
 # Create app directory
