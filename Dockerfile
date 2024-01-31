@@ -1,5 +1,11 @@
 FROM python:3.12-bookworm
-LABEL description="Ansible Run Container"
+
+LABEL org.opencontainers.image.title="Ansible Runner"
+LABEL org.opencontainers.image.description="Ansible Run Container"
+LABEL org.opencontainers.image.vendor="Gamers Outreach Foundation"
+LABEL org.opencontainers.image.source="https://github.com/gamersoutreach/docker-ansible-runner"
+LABEL org.opencontainers.image.licenses="MIT"
+
 ENV PYTHONUNBUFFERED=1 \
     LANG="C.UTF-8" \
     LANGUAGE="C.UTF-8" \
