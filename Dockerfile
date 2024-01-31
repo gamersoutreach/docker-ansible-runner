@@ -29,7 +29,10 @@ EOF
 RUN <<EOF
     set -eux
     apt-get update
-    apt-get install -y --no-install-recommends libssh-dev gosu
+    apt-get install -y --no-install-recommends \
+        gosu \
+        libssh-dev \
+        sshpass
     rm -rf /var/lib/apt/lists/*
 EOF
 
