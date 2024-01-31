@@ -4,6 +4,13 @@ This project builds a docker image with all of the dependencies required to run 
 
 ## Image Details
 
+### Environment Variables
+
+| Environment Variable | Description                            |
+| -------------------- | -------------------------------------- |
+| `PUID`               | User ID of the primary ansible user    |
+| `PGID`               | Group ID for the priamry ansible group |
+
 ### Users
 
 | User      | Description                                                                                                                                            |
@@ -26,6 +33,8 @@ docker run \
     --rm -it \
     --pull always \
     --network host \
+    -e PUID=${id -u} \
+    -e PGID=${id -g} \
     --mount type=bind,source=".",target=/app \
     --mount type=bind,source="${HOME}/.ssh",target=/home/ansible/.ssh,readonly \
     ghcr.io/gamersoutreach/ansible-runner:latest \

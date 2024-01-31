@@ -9,34 +9,34 @@ ENV PYTHONUNBUFFERED=1 \
 # Create app directory
 RUN set -eux; \
     mkdir /app
-WORKDIR /app
 
-# Create user for ssh
+# Create ansible user with explicit uid
 RUN <<EOF
     set -eux
-    useradd -m ansible
+    groupadd -r ansible --gid=1000
+    useradd -m -u 1000 -g 1000 ansible
     mkdir -p /home/ansible/.ssh
-    chown -R ansible:ansible /home/ansible/.ssh
+    chown -R ansible:ansible /home/ansible
 EOF
 
-# Install runtime dependencies
+# Install system runtime dependencies
 RUN <<EOF
     set -eux
     apt-get update
-    apt-get install -y --no-install-recommends libssh-dev
+    apt-get install -y --no-install-recommends libssh-dev gosu
     rm -rf /var/lib/apt/lists/*
 EOF
 
-# Install python dependencies
+# Install python runtime dependencies
 COPY overlay/ /
 RUN <<EOF
     set -eux
     pip install -r /opt/buildpack/requirements.txt
+    su -c "ansible-galaxy collection install -r /opt/buildpack/requirements.yaml" ansible
 EOF
 
-# Install ansible dependencies
-USER ansible
-RUN <<EOF
-    set -eux
-    ansible-galaxy collection install -r /opt/buildpack/requirements.yaml
-EOF
+VOLUME /app
+VOLUME /home/ansible/.ssh
+WORKDIR /app
+ENTRYPOINT ["/docker-entrypoint.sh"]
+CMD ["/bin/bash"]
