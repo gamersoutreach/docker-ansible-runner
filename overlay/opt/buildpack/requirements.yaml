@@ -13,3 +13,6 @@ collections:
   - name: ansible.posix
     version: 1.5.4
     source: https://galaxy.ansible.com
+  - name: vyos.vyos
+    version: 4.1.0
+    source: https://galaxy.ansible.com
