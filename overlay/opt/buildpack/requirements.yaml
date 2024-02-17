@@ -2,8 +2,10 @@
 collections:
   - name: ansible.netcommon
     version: 6.0.0
+    source: https://galaxy.ansible.com
   - name: arista.avd
     version: 4.6.0
+    source: https://galaxy.ansible.com
   - name: community.docker
     version: 3.7.0
     source: https://galaxy.ansible.com

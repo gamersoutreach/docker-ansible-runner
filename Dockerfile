@@ -19,8 +19,9 @@ RUN set -eux; \
 # Create ansible user with explicit uid
 RUN <<EOF
     set -eux
+    groupadd -r docker --gid=999
     groupadd -r ansible --gid=1000
-    useradd -m -u 1000 -g 1000 ansible
+    useradd -m -u 1000 -g 1000 -G 999 ansible
     mkdir -p /home/ansible/.ssh
     chown -R ansible:ansible /home/ansible
 EOF
@@ -46,6 +47,7 @@ EOF
 
 VOLUME /app
 VOLUME /home/ansible/.ssh
+VOLUME /var/run/docker.sock
 WORKDIR /app
 ENTRYPOINT ["/docker-entrypoint.sh"]
 CMD ["/bin/bash"]
