@@ -10,7 +10,6 @@ This project builds a docker image with all of the dependencies required to run 
 | -------------------- | ------- | -------------------------------------- |
 | `PUID`               | `1000`  | User ID of the primary ansible user    |
 | `PGID`               | `1000`  | Group ID for the priamry ansible group |
-| `DOCKERGID`          | `999`   | Group ID for the docker group          |
 
 ### Users
 
@@ -20,11 +19,10 @@ This project builds a docker image with all of the dependencies required to run 
 
 ### Mounts
 
-| Mount                  | Description                                                                                                                              |
-| ---------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
-| `/app`                 | The expected mount path for an ansible project                                                                                           |
-| `/home/ansible/.ssh`   | The default ansible user's SSH Directory. Private keys can be mounted inside of this directory for use by ansible-playbook during runs.  |
-| `/var/run/docker.sock` | This container supports access to the host's docker daemon for testing purposes. Optionally mount the docker socket if you require this. |
+| Mount                | Description                                                                                                                             |
+| -------------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
+| `/app`               | The expected mount path for an ansible project                                                                                          |
+| `/home/ansible/.ssh` | The default ansible user's SSH Directory. Private keys can be mounted inside of this directory for use by ansible-playbook during runs. |
 
 ## Usage
 
@@ -37,7 +35,6 @@ docker run \
     --network host \
     -e PUID=${id -u} \
     -e PGID=${id -g} \
-    -e DOCKERGID=${getent group docker | cut -d ':' -f 3} \
     --mount type=bind,source=".",target=/app \
     --mount type=bind,source="${HOME}/.ssh",target=/home/ansible/.ssh,readonly \
     ghcr.io/gamersoutreach/ansible-runner:latest \
