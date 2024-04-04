@@ -40,6 +40,7 @@ EOF
 COPY overlay/ /
 RUN <<EOF
     set -eux
+    chown -R ansible:ansible /home/ansible
     pip install -r /opt/buildpack/requirements.txt
     su -c "ansible-galaxy collection install -r /opt/buildpack/requirements.yaml" ansible
 EOF

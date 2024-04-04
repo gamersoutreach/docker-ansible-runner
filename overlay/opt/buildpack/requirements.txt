@@ -2,6 +2,7 @@
 ansible
 ansible-pylibssh
 ansible-lint
+paramiko
 
 # Match arista.avd collection requirements
 # https://github.com/aristanetworks/avd/blob/v4.6.0/ansible_collections/arista/avd/requirements.txt
