@@ -1,6 +1,6 @@
 # Ansible Runner Docker Image
 
-This project builds a docker image with all of the dependencies required to run `ansible-playbook` and `ansible-lint`. The as-configured version of this image also contains all of the python and ansible-galaxy dependencies neccesary to run Arista AVD plays.
+This project builds a docker image with all of the dependencies required to run `ansible-playbook` and `ansible-lint`. The as-configured version of this image also contains all of the python and ansible-galaxy dependencies necessary to run Arista AVD plays.
 
 ## Image Details
 
@@ -9,7 +9,7 @@ This project builds a docker image with all of the dependencies required to run 
 | Environment Variable | Default | Description                            |
 | -------------------- | ------- | -------------------------------------- |
 | `PUID`               | `1000`  | User ID of the primary ansible user    |
-| `PGID`               | `1000`  | Group ID for the priamry ansible group |
+| `PGID`               | `1000`  | Group ID for the primary ansible group |
 
 ### Users
 
