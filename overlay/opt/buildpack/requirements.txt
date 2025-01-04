@@ -3,4 +3,4 @@ ansible
 ansible-lint
 ansible-pylibssh
 paramiko
-pyavd[ansible-collection]==4.10.1
+pyavd[ansible-collection]==5.1.0
