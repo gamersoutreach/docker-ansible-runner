@@ -1,4 +1,4 @@
-FROM python:3.13-bookworm
+FROM python:3.13-trixie
 
 LABEL org.opencontainers.image.title="Ansible Runner"
 LABEL org.opencontainers.image.description="Ansible Run Container"
@@ -10,15 +10,14 @@ ENV PYTHONUNBUFFERED=1 \
     LANG="C.UTF-8" \
     LANGUAGE="C.UTF-8" \
     LC_ALL="C.UTF-8" \
-    LC_CTYPE="C.UTF-8"
+    LC_CTYPE="C.UTF-8" \
+    PIP_NO_CACHE_DIR=1 \
+    PIP_DISABLE_PIP_VERSION_CHECK=1
 
-# Create app directory
-RUN set -eux; \
-    mkdir /app
-
-# Create ansible user with explicit uid
+# Create directories and ansible user
 RUN <<EOF
     set -eux
+    mkdir /app
     groupadd -r ansible --gid=1000
     useradd -m -u 1000 -g 1000 ansible
     mkdir -p /home/ansible/.ssh
@@ -34,6 +33,7 @@ RUN <<EOF
         libssh-dev \
         sshpass
     rm -rf /var/lib/apt/lists/*
+    apt-get clean
 EOF
 
 # Install python runtime dependencies
@@ -41,12 +41,13 @@ COPY overlay/ /
 RUN <<EOF
     set -eux
     chown -R ansible:ansible /home/ansible
-    pip install -r /opt/buildpack/requirements.txt
+    pip install --no-cache-dir -r /opt/buildpack/requirements.txt
     su -c "ansible-galaxy collection install -r /opt/buildpack/requirements.yaml" ansible
 EOF
 
 VOLUME /app
 VOLUME /home/ansible/.ssh
 WORKDIR /app
+
 ENTRYPOINT ["/docker-entrypoint.sh"]
 CMD ["/bin/bash"]
