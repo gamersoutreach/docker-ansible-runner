@@ -40,9 +40,8 @@ EOF
 COPY overlay/ /
 RUN <<EOF
     set -eux
-    chown -R ansible:ansible /home/ansible
     pip install --no-cache-dir -r /opt/buildpack/requirements.txt
-    su -c "ansible-galaxy collection install -r /opt/buildpack/requirements.yaml" ansible
+    ansible-galaxy collection install -r /opt/buildpack/requirements.yaml -p /usr/share/ansible/collections
 EOF
 
 VOLUME /app

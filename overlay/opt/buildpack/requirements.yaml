@@ -7,5 +7,5 @@ collections:
     version: 5.7.0
     source: https://galaxy.ansible.com
   - name: vyos.vyos
-    version: 5.0.0
+    version: 6.0.0
     source: https://galaxy.ansible.com
