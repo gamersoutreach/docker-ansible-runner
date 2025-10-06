@@ -9,6 +9,6 @@ collections:
   - name: community.docker
     version: 4.8.1
   - name: community.general
-    version: 1.6.2
+    version: 11.4.0
   - name: vyos.vyos
     version: 6.0.0
