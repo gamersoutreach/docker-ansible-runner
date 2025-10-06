@@ -2,10 +2,13 @@
 collections:
   - name: ansible.netcommon
     version: 8.1.0
-    source: https://galaxy.ansible.com
+  - name: ansible.posix
+    version: 2.1.0
   - name: arista.avd
     version: 5.7.0
-    source: https://galaxy.ansible.com
+  - name: community.docker
+    version: 4.1
+  - name: community.general
+    version: 1.6.2
   - name: vyos.vyos
     version: 6.0.0
-    source: https://galaxy.ansible.com

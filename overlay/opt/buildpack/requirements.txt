@@ -1,5 +1,4 @@
-# Default requirements for all projects
-ansible
+ansible-core>=2.16.0,<2.19.0  # version constraint dictated by pyavd
 ansible-lint
 ansible-pylibssh
 paramiko
