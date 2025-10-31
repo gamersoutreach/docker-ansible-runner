@@ -2,4 +2,4 @@ ansible-core>=2.16.0,<2.19.0  # version constraint dictated by pyavd
 ansible-lint
 ansible-pylibssh
 paramiko
-pyavd[ansible-collection]==5.7.1
+pyavd[ansible-collection]==5.7.2
