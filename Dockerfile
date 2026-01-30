@@ -31,7 +31,8 @@ RUN <<EOF
     apt-get install -y --no-install-recommends \
         gosu \
         libssh-dev \
-        sshpass
+        sshpass \
+        rsync
     rm -rf /var/lib/apt/lists/*
     apt-get clean
 EOF
