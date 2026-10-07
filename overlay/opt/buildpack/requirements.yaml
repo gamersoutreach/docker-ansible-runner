@@ -13,4 +13,4 @@ collections:
   - name: community.general
     version: 13.0.0
   - name: vyos.vyos
-    version: 6.0.0
+    version: 6.1.0
