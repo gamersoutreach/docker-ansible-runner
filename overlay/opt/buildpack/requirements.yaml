@@ -1,16 +1,16 @@
 ---
 collections:
   - name: ansible.netcommon
-    version: 8.5.2
+    version: 8.7.1
   - name: ansible.posix
-    version: 2.2.0
+    version: 2.2.2
   - name: arista.avd
-    version: 6.1.0
+    version: 6.4.0
   - name: cisco.ios
-    version: 11.3.0
+    version: 11.6.0
   - name: community.docker
-    version: 5.2.0
+    version: 5.4.0
   - name: community.general
-    version: 13.0.0
+    version: 14.0.0
   - name: vyos.vyos
-    version: 6.0.0
+    version: 6.2.0
